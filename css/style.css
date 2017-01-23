@@ -1,0 +1,114 @@
+/*Navegação*/
+html {
+  font: small/1.5 "Lucinda Grande", Tahoma, sans-serif;
+}
+#main {
+  max-width: 990px;
+  margin: 0 auto;
+}
+nav {
+
+}
+#nav-principal {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  list-style-type: none;
+  width: 890px;
+}
+
+#nav-principal li {
+  margin: 0;
+  padding: 0;
+  float: left;
+}
+#nav-principal a {
+  float: left;
+  width: 200px;
+  text-align: center;
+  color: #000;
+  text-decoration: none;
+  line-height: 1.5;
+  border: 1px solid #000;
+}
+
+#nav-principal a:hover {
+  background-color: #00FFFF;
+}
+
+  #body-regionais #nav-regionais a,
+  #body-empreendimentos #nav-empreendimentos a,
+  #body-usuarios #nav-usuarios a,
+  #body-sair #nav-sair a {
+    background: #beb06f;
+    color: #1a1303;
+    font-weight: bold;
+}
+/*fim navegação*/
+
+/*tabelas*/
+table {
+	margin: 0 auto;
+	border-collapse: collapse;
+}
+
+th, td{ border: 1px solid #000; text-align: left;}
+.descricao { padding: 0 150px 0 150px; }
+.edita-exclui { padding: 0 10px 0 10px; }
+.descricao-empreendimento { padding: 0 200px 0 0px; }
+.cidade { padding: 0 150px 0 0px; }
+.uf { padding: 0 30px 0 0px; }
+.nome-usuario { padding: 0 100px 0 0px; }
+.nome-empreendimento { padding: 0 100px 0 0px; }
+/* fim tabela*/
+
+/*empreendimentos.php*/
+section.lista-empreendimentos {
+  float: left;
+  width: 81.5%;
+  height: 500px;
+  border: 1px solid #000;
+	margin-top: 20px;
+}
+
+header h3 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#btn {
+  margin: 30px 0 0 550px;
+}
+
+/*fim formulário empreendimentos*/
+#formulario-empreendimentos {
+	margin: 0 0 -1em 0;
+	padding: 0 0 1em 0;
+	border-style: none;
+	margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#form-empree {
+	padding: 2.5em 1em 0 10em;
+	list-style: none;
+}
+
+#btnGravar, #btnAtualizar {
+	margin-left: 25em;
+}
+
+.input-empree {
+	float: left;
+	clear: left;
+	width: 100%;
+	padding-bottom: 1.5em;
+}
+
+label {
+	float: left;
+	width: 10em;
+	margin-right: 1em;
+	text-align: right;
+}
+/*fim formulário empreendimentos*/
