@@ -2,10 +2,6 @@
 
 class Regionais {
 
-  public $idregional;
-  public $descricao;
-  public $pdo;
-
   //metodo Cadastra Regional
   public function cadastraRegionais($pdo, $descricao) {
     try {
@@ -37,7 +33,8 @@ class Regionais {
     }
   }
 
-  //metod Excluir Regional
+
+  //metod pega id Regional
   public function pegaId($pdo, $id) {
     try {
       $sql = $pdo->prepare("SELECT * FROM regional WHERE idregional = ?");

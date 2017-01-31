@@ -1,5 +1,6 @@
 <?php include '../class/Conexao.class.php'; ?>
 <?php include '../class/Regionais.class.php'; ?>
+
 <?php
 sleep(1);
 
@@ -8,50 +9,59 @@ $action = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_STRING);
 //Cria a conexão com o banco
 $pdo = Conexao::conexao();
 //Instancia a objeto da classe Regionais
-$obj = new Regionais;
+$objRegional = new Regionais;
 
 //Classe Regionais
 switch ($action) {
+
   //Lista Regionais
   case 'lista':
-    $regional = json_encode($obj->listaRegionais($pdo));
+    $regional = json_encode($objRegional->listaRegionais($pdo));
     echo $regional;
     break;
+
   //Cadastra Regionais
   case 'cadastra':
     $descricao = filter_input(INPUT_POST, 'descricao', FILTER_SANITIZE_STRING);
-    if($obj->cadastraRegionais($pdo, $descricao)) :
-        echo "Cadastrou";
-    else :
-       echo 'Erro ao cadastar';
-    endif;
+    if(!empty($descricao)) {
+      if($objRegional->cadastraRegionais($pdo, $descricao)) {
+          echo 'true';
+      }
+    }else {
+      echo 'false';
+    }
     break;
+
    //Pega id Regionaal
    case 'pegaId':
    $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
-   $dados = json_encode($obj->pegaId($pdo, $id));
+   $dados = json_encode($objRegional->pegaId($pdo, $id));
    echo $dados;
    break;
+
    //Edita Regional
    case 'editar':
     $idregional = filter_input(INPUT_POST, 'idregional', FILTER_SANITIZE_NUMBER_INT);
     $descricao = filter_input(INPUT_POST, 'descricao', FILTER_SANITIZE_STRING);
-    if($obj->atualizaRegional($pdo, $idregional, $descricao)):
-      echo 'atualizou';
+    if($objRegional->atualizaRegional($pdo, $idregional, $descricao)) :
+      echo 'true';
     else :
-      echo 'Erro ao atualizar';
+      echo 'false';
     endif;
+    break;
+
     //Exclui Regional
     case 'excluir':
       $idregional = filter_input(INPUT_POST, 'idregional', FILTER_SANITIZE_NUMBER_INT);
-      if($obj->deletarRegional($pdo, $idregional)):
-        echo 'Excluido';
+      if($objRegional->deletarRegional($pdo, $idregional)):
+        echo 'true';
       else :
-        echo 'Erro ao excluir';
+        echo 'false';
       endif;
       break;
+
     default:
-    echo 'teste';
+    echo 'false';
     break;
 }
 ?>

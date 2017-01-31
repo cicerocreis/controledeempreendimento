@@ -46,6 +46,18 @@ nav {
 }
 /*fim navegação*/
 
+/*Paginação*/
+#paginacaoRegional  {
+  padding: 0px;
+  margin-left: 170px;
+}
+
+#paginacaoRegional li{
+  display: inline;
+  color: blue;
+}
+/*fim da paginação*/
+
 /*tabelas*/
 table {
 	margin: 0 auto;
@@ -58,17 +70,18 @@ th, td{ border: 1px solid #000; text-align: left;}
 .descricao-empreendimento { padding: 0 200px 0 0px; }
 .cidade { padding: 0 150px 0 0px; }
 .uf { padding: 0 30px 0 0px; }
-.nome-usuario { padding: 0 100px 0 0px; }
-.nome-empreendimento { padding: 0 100px 0 0px; }
+.nome-usuario { padding: 0 120px 0 0px; }
+.email-usuario { padding: 0 120px 0 0px; }
 /* fim tabela*/
 
-/*empreendimentos.php*/
-section.lista-empreendimentos {
+
+/* header */
+section.lista-principal {
   float: left;
-  width: 81.5%;
+  margin-top: 3%;
+  width: 81.37%;
   height: 500px;
   border: 1px solid #000;
-	margin-top: 20px;
 }
 
 header h3 {
@@ -76,26 +89,28 @@ header h3 {
   margin-bottom: 10px;
 }
 
-#btn {
+#btnNovo {
   margin: 30px 0 0 550px;
 }
+/* fim header */
 
-/*fim formulário empreendimentos*/
-#formulario-empreendimentos {
-	margin: 0 0 -1em 0;
-	padding: 0 0 1em 0;
+/*formulario*/
+#form-cadastrar {
 	border-style: none;
-	margin-top: 20px;
-  margin-bottom: 20px;
+  display: none;
+}
+#form-atualizar {
+  border-style: none;
+  display: none;
 }
 
 #form-empree {
-	padding: 2.5em 1em 0 10em;
+	padding: 2.5em 1em 0 12em;
 	list-style: none;
 }
 
 #btnGravar, #btnAtualizar {
-	margin-left: 25em;
+	margin-left: 28em;
 }
 
 .input-empree {
@@ -111,4 +126,35 @@ label {
 	margin-right: 1em;
 	text-align: right;
 }
+
+/*Lista empreendiento na pag usuarios.php*/
+.scroll {
+    margin-left: 15%;
+	  width:200px;
+	  height:70px;
+	  border: 1px solid #F2F2F2;
+	  overflow:auto;
+	}
+
+.scroll ul li{
+  list-style-type: none;;
+}
+/*fim Lista empreendiento na pag usuarios.php*/
+
+#voltar {
+  text-align: center;
+}
+
+#voltar a:link {
+    text-decoration: none;
+}
+
+#voltar a:hover {
+    text-decoration: underline;
+}
+
+#voltar a:active {
+    text-decoration: underline;
+}
+
 /*fim formulário empreendimentos*/

@@ -9,7 +9,7 @@ class Conexao {
 		$HOST = "localhost";
 		$USER = "root";
 		$PASS = "";
-		$DB = "construtora";
+		$DB = "construtorax";
 		$DRIVER = "mysql";
 
     try {

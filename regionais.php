@@ -5,7 +5,7 @@
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="utf-8">
-	<base href="http://localhost/_projeto/Controle%20de%20Empreendimentos/">
+	<base href="http://localhost/git/controledeempreendimento/">
 	<title>Regionais</title>
 	<link href="css/style.css" rel="stylesheet">
 </head>
@@ -21,41 +21,63 @@
 			</ul>
 		</nav>
 
-		<section class="lista-empreendimentos">
+		<section class="lista-principal">
 
 			<header>
 			  <h3 id="titulo-lista">Lista de Regionais</h3>
+				<p id="mensagem"></p>
 			</header>
 
 			<div class="lista">
-				<p><button id="btn">Novo</button></p>
-				<p>
-					<label for="DLState"></label>
-					<table id="tbRegional"></table>
-				</p>
+				<button type="button" id="btnNovo">Novo</button>
+
+				<p id="mensagem-registro"></p>
+
+				<label for="tbRegional"></label>
+				<table id="tbRegional"></table>
+
 			</div>
 
-			<div id="formulario-empreendimentos">
-				<form action="" name="formulario" method="post" style="display:none">
-					<ol id="form-empree">
-						<li class="input-empree">
-							<label for="empreendimento">Regional:</label>
-							<textarea rows="5" cols="30" name="descricao" id="descricao" value="" placeholder="Descrição da regional..."></textarea>
-						</li>
-						<li>
-							<input type="hidden" name="idregional" id="idregionalx" value="">
-						</li>
-					</ol>
-					<button type="submit" id="btnGravar">Gravar</button>
-				</form>
-			</div>
+			<!--formulario Cadastra Regional-->
+			<div id="form-cadastrar">
+        <form action="" name="formularioCadastrar" method="post">
+          <ul id="form-empree">
+            <li class="input-empree">
+              <label for="empreendimento">Regional:</label>
+              <textarea rows="5" cols="30" name="descricao" id="descricao" value="" placeholder="Descrição da regional..."></textarea>
+            </li>
+            <li>
+              <input type="hidden" name="idregional" id="idregionalx" value="">
+            </li>
+          </ul>
+					<input type="submit" id="btnGravar" value="Gravar">
 
+					<p id="voltar"><a href="regionais.php">voltar</a></p>
+
+        </form>
+      </div>
+
+			<!--formulario Atualiza Regional-->
+			<div id="form-atualizar">
+        <form action="" name="formularioAtualizar" method="post">
+          <ul id="form-empree">
+            <li class="input-empree">
+              <label for="empreendimento">Regional:</label>
+              <textarea rows="5" cols="30" name="descricao" id="descricao" value="" placeholder="Descrição da regional..."></textarea>
+            </li>
+            <li>
+              <input type="hidden" name="idregional" id="idregionalx" value="">
+            </li>
+          </ul>
+					<input type="submit" id="btnAtualizar" value="Atualizar">
+
+					<p id="voltar"><a href="regionais.php">voltar</a></p>
+
+        </form>
+      </div>
 		</section>
-
 	</div>
-
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="js/regionais.js"></script>
-	<script src="js/script.js"></script>
 </body>
 </html>
