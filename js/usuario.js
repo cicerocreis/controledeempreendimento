@@ -23,7 +23,8 @@
     		},
     		success: function(retorno) {
     			$('#btnGravar').attr('disable', false).val('Gravar');
-    			if(retorno) {
+          retorno = JSON.parse(retorno);
+          if(retorno == true) {
     				$('#mensagem').text('Usuário cadastrado com sucesso').css(
     				{'color':'red','text-align':'center'}).fadeOut(5000);
     				$('#cnome').val('');
@@ -113,12 +114,13 @@
 			},
 			success: function(retorno) {
         $('#btnAtualizar').attr('disable', false).val('Atualizar');
-				if(retorno) {
+        retorno = JSON.parse(retorno);
+        if(retorno == true) {
 					$('#mensagem').text('Usuário atualizado com sucesso').css(
-					  {'color':'blue','text-align':'center'}).fadeOut(7000);
+					  {'color':'red','text-align':'center'}).fadeOut(7000);
 				}else {
           $('#mensagem').text('Não foi possível atualizar o usuário').css(
-					  {'color':'blue','text-align':'center'}).fadeOut(7000);
+					  {'color':'red','text-align':'center'}).fadeOut(7000);
 				}
 			}
 		});

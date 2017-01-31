@@ -72,15 +72,15 @@
       },
       success: function(retorno) {
         btnGravar.attr('disable', false).val('Gravar');
-        retorno = retorno === 'true' ? true : false;
-        if(retorno) {
+        retorno = JSON.parse(retorno);
+        if(retorno == true) {
           $('#mensagem').text('Regional cadastrada').css(
-              {'color':'blue',
+              {'color':'red',
               'text-align':'center'}).fadeOut(7000);
               $('#descricao').val('');
         }else {
           $('#mensagem').text('Favor, informar a regional').css(
-              {'color':'blue',
+              {'color':'red',
               'text-align':'center'}).fadeOut(7000);
         }
       }
@@ -100,13 +100,13 @@
         },
         success: function(retorno) {
           btnAtualizar.attr('disable', false).val('Atualizar');
-          retorno = retorno === 'true' ? true : false;
-          if(retorno) {
+          retorno = JSON.parse(retorno);
+          if(retorno == true) {
             $('#mensagem').text('Regional atualizada com sucesso').css(
-              {'color':'blue','text-align':'center'}).fadeOut(7000);
+              {'color':'red','text-align':'center'}).fadeOut(7000);
           }else {
             $('#mensagem').text('Erro ao atualizar regional').css(
-              {'color':'blue','text-align':'center'}).fadeOut(7000);
+              {'color':'red','text-align':'center'}).fadeOut(7000);
           }
         }
       });

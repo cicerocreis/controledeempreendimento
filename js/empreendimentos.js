@@ -28,7 +28,8 @@
       },
       success: function(retorno) {
         btnGravar.attr('disable', false).val('Gravar');
-        if(retorno) {
+        retorno = JSON.parse(retorno);
+        if(retorno == true) {
           $('#mensagem').text('Empreendimento cadastrado com sucesso').css(
             {'color':'red','text-align':'center'}).fadeOut(5000);
             $('#cempreendimento').val('');
@@ -165,12 +166,14 @@
           btnAtualizar.val('Atualizando...').attr('disable', true);
         },
         success: function(retorno) {
-          btnAtualizar.attr('disable', false).val('Atualizar');          
-          if(retorno) {
+          btnAtualizar.attr('disable', false).val('Atualizar');
+          retorno = JSON.parse(retorno);
+          if(retorno == true) {
             $('#mensagem').text('Regional atualizada com sucesso').css(
-              {'color':'blue','text-align':'center'}).fadeOut(7000);
+              {'color':'red','text-align':'center'}).fadeOut(7000);
           }else {
-            console.log('false');
+            $('#mensagem').text('Erro ao atualizar regional').css(
+              {'color':'red','text-align':'center'}).fadeOut(7000);
           }
         }
       });
@@ -187,7 +190,7 @@
         });
       }else {
         $('#mensagem').text('Erro ao excluir regional').css(
-          {'color':'blue','text-align':'center'}).fadeOut(7000);;
+          {'color':'red','text-align':'center'}).fadeOut(7000);;
       }
   });
 
