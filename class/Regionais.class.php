@@ -5,8 +5,7 @@ class Regionais {
   //metodo Cadastra Regional
   public function cadastraRegionais($pdo, $descricao) {
     try {
-      $cadastraRegional = $pdo->prepare("INSERT INTO regional (descricao)
-                    values(?)");
+      $cadastraRegional = $pdo->prepare("INSERT INTO regional (descricao) VALUES (?)");
       $cadastraRegional->bindValue(1,$descricao, PDO::PARAM_STR);
       $cadastraRegional->execute();
       if($cadastraRegional->rowCount() > 0) :

@@ -1,5 +1,12 @@
 (function($){
 
+    var empreendimento;
+    var usuario;
+    var empreendimentoUsuario;
+    var alteraUsuario;
+    var id;
+    var idEmpUsuario;
+
     //Mostra formulario Cadastrar
     $("#btnNovo").click(function(){
       $('.lista').fadeOut();
@@ -27,6 +34,8 @@
           if(retorno == true) {
     				$('#mensagem').text('Usuário cadastrado com sucesso').css(
     				{'color':'red','text-align':'center'}).fadeOut(5000);
+            $('#form-cadastrar').fadeOut(1000);
+            window.setTimeout(carregaPagina, 5000);
     				$('#cnome').val('');
     				$('#cemail').val('');
     				$('#csenha').val('');
@@ -46,7 +55,7 @@
 			type: 'post',
 			data: 'action=listaUsuario',
 			success: function(retorno) {
-				var usuario = JSON.parse(retorno);
+				usuario = JSON.parse(retorno);
 				if(usuario != false) {
 					var listItems = '<thead>'+
 							'<tr>'+
@@ -71,7 +80,7 @@
 				}
 			}
 		});
-	}
+	};
   listaUsuario();
   //fim Lista Usuarios
 
@@ -80,27 +89,70 @@
 
 		event.preventDefault();
 
-		var id = $(this).attr('data-id-usuario');
+		id = $(this).attr('data-id-usuario');
 
 		$('#senha').hide();
 
 		$.post('ajax/controleUsuario.php', {action: 'pegaId', id: id},
 			function(retorno) {
-  			var alteraUsuario = JSON.parse(retorno);
-        console.log(alteraUsuario);
+  		  alteraUsuario = JSON.parse(retorno);
   			$("#titulo-lista").text(document.title);
   			$(".lista").fadeOut('fast');
   			$("#form-atualizar").fadeIn(3000);
   			$('#nome').val(alteraUsuario[0].nome);
   			$('#email').val(alteraUsuario[0].email);
-  			$('#idusuario').val(alteraUsuario[0].idusuario);
+        $('#idusuario').val(alteraUsuario[0].idusuario);
+
+        listaEmpreendimentosUsuario();
+        listaEmpreendimentos();
 		});
 	});
   //Fim Pega id
 
+  //Lista Empreendimentos e Usuarios*/
+  var listaEmpreendimentosUsuario = function() {
+      $.post('ajax/controleUsuario.php', {action: 'lista-empreendimento-usuario', id: id},
+  			function(retorno) {
+    		  idEmpUsuario = JSON.parse(retorno);
+      });
+  };
+  //fim Lista Empreendimentos e Usuarios*/
+
+  //Lista Empreendimentos
+	var listaEmpreendimentos = function() {
+		$.ajax({
+			  url: 'ajax/controleUsuario',
+				type: 'post',
+				data: 'action=lista-empreendimentos',
+				success: function(retorno) {
+					empreendimento = JSON.parse(retorno);
+					var listaEmpreendimento = '<ul>';
+              for(var i = 0; i < empreendimento.length; i++) {
+                  listaEmpreendimento += '<li>'+
+                  '<input type="checkbox" id="'+empreendimento[i].idempreendimento+'" class="lista-idempreendimento" name="idempreendimento[]" value="'+empreendimento[i].idempreendimento+'">'+empreendimento[i].nome+'</li>';
+              }
+                listaEmpreendimento += '</ul>';
+                $('.scroll').html(listaEmpreendimento);
+                if(idEmpUsuario.length != 0)   {
+                  checkboxEmpreendimentos();
+                }
+				  }
+		});
+	};
+  //fim Lista Empreendimentos*/
+
+  var checkboxEmpreendimentos = function() {
+    for(var i = 0; i < empreendimento.length; i++) {
+      for(var e = 0; e < idEmpUsuario.length; e++) {
+        if(empreendimento[i].idempreendimento == idEmpUsuario[e].idempreendimento) {
+          $('#'+empreendimento[i].idempreendimento).prop('checked', true);
+        }
+      }
+    }
+  };
+
   //Edita usuário
 	$('form[name="formularioAtualizar"]').on('submit', function(event) {
-
 		event.preventDefault();
 
 		var dados = $(this);
@@ -114,13 +166,16 @@
 			},
 			success: function(retorno) {
         $('#btnAtualizar').attr('disable', false).val('Atualizar');
+        console.log(retorno);
         retorno = JSON.parse(retorno);
         if(retorno == true) {
 					$('#mensagem').text('Usuário atualizado com sucesso').css(
-					  {'color':'red','text-align':'center'}).fadeOut(7000);
+					  {'color':'red','text-align':'center'}).fadeOut(5000);
+            window.setTimeout(carregaPagina, 5000);
 				}else {
+          $(location).attr('href', 'usuarios.php');
           $('#mensagem').text('Não foi possível atualizar o usuário').css(
-					  {'color':'red','text-align':'center'}).fadeOut(7000);
+					  {'color':'red','text-align':'center'}).fadeOut(5000);
 				}
 			}
 		});
@@ -140,28 +195,10 @@
       }
       return false;
   });
+ //fim Excluir Usuario
 
-  /*Lista Empreendimentos
-	var listaEmpreendimentos = function() {
-
-		$.ajax({
-			url: 'ajax/controleUsuario',
-				type: 'post',
-				data: 'action=lista-empreendimentos',
-				success: function(retorno) {
-					var empreendimento = JSON.parse(retorno);
-					console.log(empreendimento);
-					var listaEmpreendimento = '<ul>';
-					for(var i = 0; i < empreendimento.length; i++) {
-						listaEmpreendimento += '<li>'+
-						'<input type="checkbox" class="lista-idempreendimento" name="cidempreendimento[]" value="'+empreendimento[i].idempreendimento+'">'+empreendimento[i].nome+'</li>';
-					}
-					listaEmpreendimento += '</ul>';
-					$('.scroll').html(listaEmpreendimento);
-				}
-		});
-	}
-  listaEmpreendimentos();
-  //fimLista Empreendimentos*/
+ function carregaPagina() {
+   $(location).attr('href', 'usuarios.php');
+ }
 
 })(jQuery);

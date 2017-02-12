@@ -1,8 +1,6 @@
-<?php include '../class/Conexao.class.php'; ?>
-<?php include '../class/Usuario.class.php'; ?>
+<?php include '../config.inc.php'; ?>
 
 <?php
-sleep(1);
 
 $action = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_STRING);
 
@@ -39,7 +37,7 @@ switch ($action) {
     //lista Usuario
     case 'listaUsuario':
       $dados = json_encode($usuario->listaUsuario($pdo));
-      echo $dados;
+      print_r($dados);
       break;
 
       //Pega id Usuario
@@ -53,12 +51,13 @@ switch ($action) {
       case 'editar':
          $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_STRING);
          $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);
+         $idempreendimento = $_POST['idempreendimento'];
          $idusuario = filter_input(INPUT_POST, 'idusuario', FILTER_SANITIZE_NUMBER_INT);
-         if($usuario->atualizaUsuario($pdo, $nome, $email, $idusuario)) :
-           echo 'true';
-         else :
-           echo 'false';
-         endif;
+         if($usuario->atualizaUsuario($pdo, $nome, $email, $idusuario, $idempreendimento)):
+             echo 'true';
+           else :
+             echo 'false';
+           endif;
          break;
 
        //Exclui Usuario
@@ -73,11 +72,18 @@ switch ($action) {
 
          //Lista Empreendimentos
          case 'lista-empreendimentos':
-            $empreendimentos = json_encode($usuario->listaEmpreendimento($pdo));
+            $empreendimentos = json_encode($usuario->listaEmpreendimentos($pdo));
             echo $empreendimentos;
            break;
 
-          default:
+        //Lista Empreendimentos usuários
+        case 'lista-empreendimento-usuario':
+          $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+          $dados = json_encode($usuario->listaEmpreendimentosUsuario($pdo, $id));
+          echo $dados;
+          break;
+
+        default:
             echo 'false';
             break;
 }

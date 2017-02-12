@@ -80,9 +80,9 @@
 							<label for="senha">Senha:</label>
 							<input id="senha" name="senha" class="senha" type="password" value="">
 						</li>
-						<!--<li>
+						<li>
 							<div class="scroll"></div>
-						</li>-->
+						</li>
 						<li>
               <input type="hidden" name="idusuario" id="idusuario" value="">
             </li>

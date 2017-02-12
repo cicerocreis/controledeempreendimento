@@ -1,7 +1,6 @@
-<?php include '../class/Conexao.class.php'; ?>
-<?php include '../class/Empreendimento.class.php'; ?>
+<?php include '../config.inc.php'; ?>
+
 <?php
-sleep(1);
 
 $action = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_STRING);
 

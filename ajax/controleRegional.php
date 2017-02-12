@@ -1,5 +1,4 @@
-<?php include '../class/Conexao.class.php'; ?>
-<?php include '../class/Regionais.class.php'; ?>
+<?php include '../config.inc.php'; ?>
 
 <?php
 sleep(1);

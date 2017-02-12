@@ -75,9 +75,10 @@
         retorno = JSON.parse(retorno);
         if(retorno == true) {
           $('#mensagem').text('Regional cadastrada').css(
-              {'color':'red',
-              'text-align':'center'}).fadeOut(7000);
-              $('#descricao').val('');
+          {'color':'red','text-align':'center'}).fadeOut(5000);
+          $('#descricao').val('');
+          $('#form-cadastrar').fadeOut(1000);
+          window.setTimeout(carregaPagina, 5000);
         }else {
           $('#mensagem').text('Favor, informar a regional').css(
               {'color':'red',
@@ -103,7 +104,8 @@
           retorno = JSON.parse(retorno);
           if(retorno == true) {
             $('#mensagem').text('Regional atualizada com sucesso').css(
-              {'color':'red','text-align':'center'}).fadeOut(7000);
+              {'color':'red','text-align':'center'}).fadeOut(5000);
+              window.setTimeout(carregaPagina, 5000);
           }else {
             $('#mensagem').text('Erro ao atualizar regional').css(
               {'color':'red','text-align':'center'}).fadeOut(7000);
@@ -126,5 +128,9 @@
       }
       return false;
   });
+
+  function carregaPagina() {
+    $(location).attr('href', 'regionais.php');
+  }
 
 })(jQuery);

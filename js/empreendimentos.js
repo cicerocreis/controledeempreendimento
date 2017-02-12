@@ -37,6 +37,7 @@
             $('#ccidade').val('');
             $('#cuf').val('');
             $('#cregionais').val('');
+            window.setTimeout(carregaPagina, 5000);
         }else {
           $('#mensagem').text('Favor, preencher todos os campos').css(
             {'color':'red','text-align':'center'}).fadeOut(7000);
@@ -171,6 +172,7 @@
           if(retorno == true) {
             $('#mensagem').text('Regional atualizada com sucesso').css(
               {'color':'red','text-align':'center'}).fadeOut(7000);
+              window.setTimeout(carregaPagina, 5000);
           }else {
             $('#mensagem').text('Erro ao atualizar regional').css(
               {'color':'red','text-align':'center'}).fadeOut(7000);
@@ -193,6 +195,10 @@
           {'color':'red','text-align':'center'}).fadeOut(7000);;
       }
   });
+
+  function carregaPagina() {
+    $(location).attr('href', 'empreendimento.php');
+  }
 
 
 })(jQuery);
